@@ -1,6 +1,5 @@
 //
 //  CircularProgressView.swift
-//  Jombone
 //
 //  Created by Giri on 03/12/21.
 //  Copyright © 2021 Giri. All rights reserved.
