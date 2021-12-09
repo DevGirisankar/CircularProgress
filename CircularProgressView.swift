@@ -12,7 +12,7 @@ class CircularProgressView: UIView {
     
     fileprivate var progressLayer = CAShapeLayer() // progress
     fileprivate var trackLayer = CAShapeLayer() // progress track
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createCircularPath()
@@ -24,7 +24,7 @@ class CircularProgressView: UIView {
     var progressWidth = 4.0 {
         didSet {
             trackLayer.lineWidth = progressWidth
-            progressLayer.lineWidth = 1.0
+            progressLayer.lineWidth = progressWidth
         }
     }
     var progressColor = UIColor.white {
@@ -32,7 +32,7 @@ class CircularProgressView: UIView {
             progressLayer.strokeColor = progressColor.cgColor
         }
     }
-    var trackColor = UIColor.white {
+    var trackColor = UIColor.green {
         didSet {
             trackLayer.strokeColor = trackColor.cgColor
         }
@@ -58,7 +58,7 @@ class CircularProgressView: UIView {
         progressLayer.strokeEnd = 0.0
         layer.addSublayer(progressLayer)
     }
-    func setProgressWithAnimation(duration: TimeInterval, value: Float) {
+    func setProgress(duration: TimeInterval = 0.0, value: Float) {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = duration
         animation.fromValue = progressLayer.strokeEnd
@@ -68,7 +68,6 @@ class CircularProgressView: UIView {
         progressLayer.add(animation, forKey: "animate")
     }
     func completeProgress() {
-        progressLayer.strokeColor = progressColor.cgColor
-        progressLayer.strokeEnd = 1.0
+        setProgress(duration: 0, value: 1.0)
     }
 }
